@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MvcCosmosDbSeries.Models.Serie>
+
+@{
+    ViewData["Title"] = "Series";
+}
+
+<h1>Series</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="Series">Create New</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Puntuacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Anyo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Imagen)" style="width:150px;height: 150px;" />  
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Puntuacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anyo)
+            </td>
+            <td>
+                <a asp-controller="Series" 
+                    asp-action="Details"
+                    asp-route-id="@item.Id" 
+                    class="btn btn-outline-dark">
+                    Details
+                </a>
+                <a asp-controller="Series" 
+                    asp-action="Edit"
+                    asp-route-id="@item.Id" 
+                    class="btn btn-info">
+                    Edit
+                </a>
+                <a asp-controller="Series" 
+                    asp-action="Delete"
+                    asp-route-id="@item.Id"
+                    class="btn btn-danger">
+                    Delete
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
